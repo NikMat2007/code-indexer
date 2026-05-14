@@ -56,3 +56,12 @@ docker-compose up --build --force-recreate
 ```bash 
 curl http://localhost:8000/app/stats
 ```
+# Скачать образ
+```bash 
+docker pull nikmat2007/code-indexer:latest
+```
+
+# Запустить
+```bash 
+docker run -p 8000:8000 nikmat2007/code-indexer:latest
+```
