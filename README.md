@@ -65,3 +65,10 @@ docker pull nikmat2007/code-indexer:latest
 ```bash 
 docker run -p 8000:8000 nikmat2007/code-indexer:latest
 ```
+## Быстрый старт (одна команда)
+
+```bash
+git clone https://github.com/NikMat2007/code-indexer.git
+cd code-indexer
+docker-compose up --build --force-recreate
+```
