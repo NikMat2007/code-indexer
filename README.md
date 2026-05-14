@@ -1,48 +1,52 @@
-# Code Indexer — система поиска по Python файлам (PostgreSQL)
+# Code Indexer                     Python        (PostgreSQL)
 
-## Описание
+##         
 
-Система индексации и поиска функций и классов в Python файлах с использованием:
-- **PostgreSQL** для хранения данных
-- **FastAPI** для REST API
-- **Docker** для контейнеризации
+                                                Python                        :
+- **PostgreSQL**                    
+- **FastAPI**     REST API
+- **Docker**                    
 
-## Схема базы данных
+##                  
 
-### Таблица `files`
-- `id` (SERIAL PRIMARY KEY) — внутренний идентификатор файла
-- `name` (TEXT) — имя файла
-- `path` (TEXT) — полный путь
+###         `files`
+- `id` (SERIAL PRIMARY KEY)                                 
+- `name` (TEXT)            
+- `path` (TEXT)              
 
-### Таблица `code_entities`
+###         `code_entities`
 - `id` (SERIAL PRIMARY KEY)
 - `file_id` (FOREIGN KEY ? files.id)
-- `entity_type` (TEXT) — 'function' или 'class'
-- `name` (TEXT) — имя функции/класса
-- `start_line`, `end_line` (INTEGER) — позиция в файле
-- `docstring` (TEXT) — документация
+- `entity_type` (TEXT)   'function'     'class'
+- `name` (TEXT)              /      
+- `start_line`, `end_line` (INTEGER)                  
+- `docstring` (TEXT)               
 
-### Индексы
-- `idx_entity_name` — ускоряет поиск по имени
-- `idx_entity_name_lower` — регистронезависимый поиск
-- `idx_entity_type_name` — фильтрация по типу
+###        
+- `idx_entity_name`                          
+- `idx_entity_name_lower`                            
+- `idx_entity_type_name`                     
 
-## Установка и запуск
+##                   
 
-### Локальный запуск (с PostgreSQL)
+###                  (  PostgreSQL)
 
 ```bash
-# 1. Установить зависимости
+# 1.                       
 pip install -r requirements.txt
 
-# 2. Запустить PostgreSQL (через Docker)
+# 2.           PostgreSQL (      Docker)
 docker-compose up -d postgres
 
-# 3. Создать тестовые данные
+# 3.                        
 python generate_test_data.py
 
-# 4. Запустить индексатор
+# 4.                     
 python indexer.py sample_data
 
-# 5. Запустить API сервер
+# 5.           API       
 uvicorn main:app --reload
+### Р§РµСЂРµР· Docker (СЂРµРєРѕРјРµРЅРґСѓРµС‚СЃСЏ)  
+```bash 
+docker-compose up --build --force-recreate 
+ ### РџСЂРѕРІРµСЂРєР° СЂР°Р±РѕС‚С‹ ```bash curl http://localhost:8000/app/stats           
