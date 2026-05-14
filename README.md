@@ -49,8 +49,10 @@ uvicorn main:app --reload
 
 ``` 
 ### Через Docker (рекомендуется) 
-```bash docker-compose up --build --force-recreate
+```bash 
+docker-compose up --build --force-recreate
 ```
 ### Проверка работы 
-```bash curl http://localhost:8000/app/stats
+```bash 
+curl http://localhost:8000/app/stats
 ```
