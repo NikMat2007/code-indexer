@@ -26,7 +26,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./sample_data:/app/sample_data:ro
+      - ./sample_data:/app/sample_data
       - ./data:/app/data
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/code_index
