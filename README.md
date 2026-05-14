@@ -1,0 +1,48 @@
+# Code Indexer Ч система поиска по Python файлам (PostgreSQL)
+
+## ќписание
+
+—истема индексации и поиска функций и классов в Python файлах с использованием:
+- **PostgreSQL** дл€ хранени€ данных
+- **FastAPI** дл€ REST API
+- **Docker** дл€ контейнеризации
+
+## —хема базы данных
+
+### “аблица `files`
+- `id` (SERIAL PRIMARY KEY) Ч внутренний идентификатор файла
+- `name` (TEXT) Ч им€ файла
+- `path` (TEXT) Ч полный путь
+
+### “аблица `code_entities`
+- `id` (SERIAL PRIMARY KEY)
+- `file_id` (FOREIGN KEY ? files.id)
+- `entity_type` (TEXT) Ч 'function' или 'class'
+- `name` (TEXT) Ч им€ функции/класса
+- `start_line`, `end_line` (INTEGER) Ч позици€ в файле
+- `docstring` (TEXT) Ч документаци€
+
+### »ндексы
+- `idx_entity_name` Ч ускор€ет поиск по имени
+- `idx_entity_name_lower` Ч регистронезависимый поиск
+- `idx_entity_type_name` Ч фильтраци€ по типу
+
+## ”становка и запуск
+
+### Ћокальный запуск (с PostgreSQL)
+
+```bash
+# 1. ”становить зависимости
+pip install -r requirements.txt
+
+# 2. «апустить PostgreSQL (через Docker)
+docker-compose up -d postgres
+
+# 3. —оздать тестовые данные
+python generate_test_data.py
+
+# 4. «апустить индексатор
+python indexer.py sample_data
+
+# 5. «апустить API сервер
+uvicorn main:app --reload
