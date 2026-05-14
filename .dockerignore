@@ -1,0 +1,13 @@
+__pycache__ 
+venv 
+.git 
+.gitignore 
+*.md 
+*.db 
+sample_data 
+data 
+postgres_data 
+.env 
+.vscode 
+.idea 
+get-pip.py 
